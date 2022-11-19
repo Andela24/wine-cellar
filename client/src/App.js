@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Home from './components/Home';
-// import { getCurrentUser } from './Actions/auth';
 import Navbar from './Navbar';
 import Login from './components/Login';
+import Signup from './Signup';
 
 
 import { BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
@@ -44,17 +44,19 @@ const App =() => {
     // navigate('/')
   }
 
-  const signup = (user) => {
-    setUser(user)
-    setLoggedIn(true)
-  }
+  // const signup = (user) => {
+  //   setUser(user)
+  //   setLoggedIn(true)
+  // }
 
   return (
     <BrowserRouter>
      <Navbar user={user}  loggedIn={ loggedIn } logoutCurrentUser={ logoutCurrentUser }/>
       <Routes>
-        <Route path="/" element={<Home user={user} loggedIn={loggedIn} />}  />
+        <Route path="/" element={<Home user={user} loggedIn={loggedIn} currentUser={currentUser} />}  />
         <Route path="/login" element={<Login handleCurrentUser={handleCurrentUser} /> } />
+        <Route path="/signup" element={<Signup handleCurrentUser={handleCurrentUser} /> } />
+        {/* <Route path="/bottles" element={} /> */}
       </Routes>
     </BrowserRouter>
   );

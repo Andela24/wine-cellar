@@ -1,12 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const Navbar = ({loggedIn, logoutCurrentUser }) => {
+    const navigate=useNavigate()
     const handleLogout = () => {
         fetch('/logout')
         .then(()=>{
          logoutCurrentUser()   
+         navigate("/")
         })
     }
     if( loggedIn ) {
