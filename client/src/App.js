@@ -13,6 +13,7 @@ const App =() => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
   const [ errors, setErrors ] = useState(false)
+  const [wineries, setWineries] = useState([])
   // const navigate = useNavigate()
 
   useEffect(()=> {
@@ -41,13 +42,13 @@ const App =() => {
   const logoutCurrentUser = () => {
     setCurrentUser({});
     setLoggedIn(false);
-    // navigate('/')
   }
 
-  // const signup = (user) => {
-  //   setUser(user)
-  //   setLoggedIn(true)
-  // }
+  useEffect(() => {
+  fetch("/wineries")
+  .then(resp => resp.json())
+  .then(wineries => setWineries(wineries))
+}, [])
 
   return (
     <BrowserRouter>
@@ -57,6 +58,8 @@ const App =() => {
         <Route path="/login" element={<Login handleCurrentUser={handleCurrentUser} /> } />
         <Route path="/signup" element={<Signup handleCurrentUser={handleCurrentUser} /> } />
         {/* <Route path="/bottles" element={} /> */}
+        {/* <Route path="/wineries"  /> */}
+        {/* <Route path="/signup" element={<Signup /> } /> */}
       </Routes>
     </BrowserRouter>
   );
